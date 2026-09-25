@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Alert, KeyboardAvoidingView, Platform, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 export default function Index() {
 
@@ -40,6 +40,11 @@ export default function Index() {
   }
 
   return (
+     <KeyboardAvoidingView
+    style={{ flex: 1 }}
+    behavior={Platform.OS === "ios" ? "padding" : "height"}
+    keyboardVerticalOffset={100}
+  >
     <View style={styles.container}>
 
       <View style={styles.cardHeader}>
@@ -109,16 +114,18 @@ export default function Index() {
       </TouchableOpacity>
 
     </View>
+    </KeyboardAvoidingView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin: 20,
-    gap: 10,
+    padding: 50,
+    gap: 20,
+    // justifyContent: "flex-end",
     // alignItems: "center",
-    // justifyContent: "center",
+    justifyContent: "center",
   },
   card: {
     backgroundColor: "#f5f5f5",
